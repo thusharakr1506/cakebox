@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<section class="section all-products" id="products">
+  <div class="top container">
+    <div>
+      <form action="" method="post">
+        {%csrf_token%}
+        
+      </form>
+    </div>
+
+    {%for cat in categories%}
+
+    <a href="{%url 'index'%}?category={{cat.name}}">{{cat.name}}</a><span>|</span>
+
+    {%endfor%}
+
+  </div>
+  <div class="product-center container">
+    {%for c in data%}
+
+    <div class="product-item">
+      <div class="overlay">
+        <a href="cakeDetails.html" class="product-thumb">
+          <img src="{{c.image.url}}" alt="" />
+        </a>
+      </div>
+      <div class="product-info">
+        <span>{{c.category_object}}</span>
+        <a href="{%url 'cake-detail' c.id%}">{{c.title}}</a>
+        <h4>{{c.price}}</h4>
+      </div>
+      <ul class="icons">
+        <li><i class="bx bx-heart"></i></li>
+        <li><i class="bx bx-search"></i></li>
+        <li><i class="bx bx-cart"></i></li>
+      </ul>
+    </div>
+
+    {%endfor%}
+  </div>
+</section>
+
+{%endblock%}
